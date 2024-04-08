@@ -137,6 +137,29 @@ const keys = {
 // enemy.draw();
 
 //let LastKey;
+let timer = 5;
+
+function decreaseTimer() {
+  if(timer > 0) {
+    setTimeout(decreaseTimer, 1000); // 밀리새컨즈
+    timer--;
+    document.querySelector("#redbox").innerHTML = timer;
+    
+  }
+  if(timer === 0) 
+  {
+    document.querySelector("#displaytext").style.display = "flex"
+      if(player.health === enemy.health) {
+        document.querySelector("#displaytext").innerHTML = "무승부";
+
+      } else if(player.health > enemy.health) {
+        document.querySelector("#displaytext").innerHTML = "1p 승리";
+      } else if(player.health > enemy.health) {
+        document.querySelector("#displaytext").innerHTML = "2p 승리";
+      }
+  }
+}
+decreaseTimer();
 
 function animate(){
     window.requestAnimationFrame(animate);
@@ -237,6 +260,9 @@ function rectangularColistion({rectangle, rectangle2}) {
         )
 }
 
+function decreaseTimer({player, enemy}) {
+
+}
 window.addEventListener("keyup",(event)=>{
     console.log(event.key);
 
@@ -255,4 +281,6 @@ window.addEventListener("keyup",(event)=>{
             keys.ArrowLeft.pressed = false;
             break;
     }
-})
+}
+if (enemy.health <= 0 || player.health)
+)
