@@ -11,7 +11,7 @@ const background = new Sprite({
         x: 0,
         y: 0,
     },
-    imageSrc : "/img/background.png",
+    imageSrc : "/first/img/background.png",
 });
 
 const shop = new Sprite({
@@ -19,7 +19,7 @@ const shop = new Sprite({
         x: 600,
         y: 128,
     },
-    imageSrc : "/img/shop.png",
+    imageSrc : "/first/img/shop.png",
     scale : 2.75,
     framesMax : 6,
 });
@@ -38,9 +38,23 @@ const player = new Fighter({
         y :10,
    },
    offset: {
-        x :0,
-        y :0,
-   }
+        x :215,
+        y :157,
+   },
+   imageSrc: "/first/img/1p.png",
+   framesMax: 8,
+   sprites : {
+        idle:  {
+            imageSrc: "/first/img/1p.png",
+            framesMax: 8,
+        },
+    run : {
+        imageSrc :"/first/img/Run.png",
+        framesMax: 8,
+    }
+   },
+   
+   scale: 2.5,
 });
 
 const enemy = new Fighter({
@@ -56,7 +70,10 @@ const enemy = new Fighter({
    offset: {
         x :-50,
         y :0,
-   }
+   },
+   imageSrc: "/first/img/1p.png",
+   framesMax: 8,
+   scale: 2.5,
 });
 
 console.log(player);
@@ -108,11 +125,13 @@ function animate() {
     // else if(keys.d.pressed) {
     //     player.velocity.x = +1;
     // }
-
+    player.image = player.sprites.idle.image;
     if(keys.a.pressed && player.lastKey === "a") {
+        player.image = player.sprites.run.image
         player.velocity.x = -2;
     }
     else if(keys.d.pressed && player.lastKey === "d") {
+        player.image = player.sprites.run.image
         player.velocity.x = +2;
     }
 
